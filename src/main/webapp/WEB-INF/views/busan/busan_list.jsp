@@ -41,7 +41,8 @@
  	   setup(){
  		   const store=useBusanStore()
  		   const params=new URLSearchParams(location.search)
-		       const type=params.get('type')
+		   const type=params.get('type')
+		       
  		   // 한번 실행 
  		 if(!params.has('type'))
  		 {
