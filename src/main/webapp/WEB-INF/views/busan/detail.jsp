@@ -14,7 +14,7 @@
                     <div class="breadcrumb__text">
                         <h2>상세보기</h2>
                         <div class="breadcrumb__option">
-                           <span>서울</span>
+                           <span>부산</span>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                :src="store.detail.vo.poster" style="width: 100%;height: 350px">
+                                :src="store.detail.vo.image1" style="width: 100%;height: 350px">
                         </div>
                         
                     </div>
@@ -48,7 +48,7 @@
                             <span>(18 reviews)</span>
                         </div>
                         
-                        <p>{{store.detail.vo.msg}}</p>
+                        <p>{{store.detail.vo.title}}</p>
                         
                         
                         <ul>
@@ -100,17 +100,17 @@
         </div>
      </section>
     </div>
-    <script src="/seouljs/seoulStore.js"></script>
+    <script src="/busanjs/busanStore.js"></script>
     <script>
      const detailApp=Vue.createApp({
     	 setup(){
-    		 const store=useSeoulStore()
+    		 const store=useBusanStore()
     		 const params=new URLSearchParams(location.search)
     		 const no=params.get('no')
-    		 const type=params.get('type')
+    		 
     		 
     		 Vue.onMounted(()=>{
-    			 store.seoulDetailData(no,type)
+    			 store.busanDetailData(no)
     		 })
     		 
     		 return {

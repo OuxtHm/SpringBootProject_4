@@ -4,7 +4,9 @@ import java.util.*;
 
 import org.springframework.stereotype.Service;
 
+import com.sist.web.mapper.FoodMapper;
 import com.sist.web.mapper.SeoulMapper;
+import com.sist.web.vo.FoodVO;
 import com.sist.web.vo.SeoulVO;
 
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SeoulServiceImpl implements SeoulService{
 	private final SeoulMapper mapper;
-	
+	private final FoodMapper fMapper;
 	@Override
 	public List<SeoulVO> seoulListData(Map map) {
 		return mapper.seoulListData(map);
@@ -28,5 +30,10 @@ public class SeoulServiceImpl implements SeoulService{
 	public SeoulVO seoulDetailData(Map map) {
 		mapper.seoulHitIncrement(map);
 		return mapper.seoulDetailData(map);
+	}
+	
+	@Override
+	public List<FoodVO> foodNearData4(String address) {
+		return fMapper.foodNearData4(address);
 	}
 }

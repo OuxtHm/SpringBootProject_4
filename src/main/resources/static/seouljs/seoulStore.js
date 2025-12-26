@@ -31,7 +31,7 @@ const useSeoulStore=defineStore('seoul',{
 		type:1,
 		detail:{
 			vo:{},
-			list:{}
+			list:[]
 		} // 실제 상세보기, 주변 맛집
 		// {vo:{}, list:[]} store.detail.vo, store.detail.list
 	}),

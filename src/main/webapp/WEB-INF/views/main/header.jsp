@@ -58,7 +58,7 @@
                             <li><a href="/seoul">서울여행</a></li>
                             <li><a href="/busan">부산여행</a></li>
                             
-                            <li><a href="./blog.html">커뮤니티</a></li>
+                            <li><a href="/board/list">커뮤니티</a></li>
                             <li><a href="./contact.html">마이페이지</a></li>
                         </ul>
                     </nav>
