@@ -6,7 +6,7 @@ const useBoardListStore = defineStore('board_list', {
 		list:[],
 		curpage:1,
 		totalpage:0,
-		
+		vo:{}
 	}),
 	// 기능 설정 => methods
 	actions:{
@@ -30,8 +30,15 @@ const useBoardListStore = defineStore('board_list', {
 			if(this.curpage<this.totalpage)
 				this.curpage=this.curpage+1	
 			this.dataRecv()
+		},
+		async boardDetail(no){
+			const res=await axios.get('http://localhost:8080/board/detail_vue/',{
+				params:{
+					no:no
+				}
+			})
+			this.vo=res.data
 		}
-		
 	}
 	
 	

@@ -12,16 +12,16 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<div class="breadcrumb__text">
-						<h2>글쓰기</h2>
+						<h2>게시판</h2>
 						<div class="breadcrumb__option">
-							<span>목록</span>
+							<span>수정</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<section class="product-details spad" id="board_insert">
+	<section class="product-details spad" id="board_update">
 		<div class="container">
 			<div class="row">
 				<table class="table">
@@ -52,7 +52,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" class="text-center">
-								<button class="btn-sm btn-success" @click="store.boardInsert({nameRef, subRef, contRef, pwdRef})">글쓰기</button>
+								<button class="btn-sm btn-success" @click="store.boardUpdate({nameRef, subRef, contRef, pwdRef})">수정</button>
 								<button class="btn-sm btn-info" onclick="javascript:history.back()">취소</button>
 							</td>
 						</tr>
@@ -61,30 +61,36 @@
 			</div>
 		</div>
 	</section>
-	<script src="/boardjs/boardInsertStore.js"></script>
+	<script src="/boardjs/boardUpdateStore.js"></script>
 	<script>
-		const {createApp, ref}=Vue
+		const {createApp, ref, onMounted}=Vue
 		const {createPinia}=Pinia
 		const app=createApp({
 			setup(){
-				const store=useBoardInsertStore()
-				const nameRef=ref('')
+				const store=useBoardUpdateStore()
+				const params=new URLSearchParams(location.search)
+     			const no=params.get('no')
+     			const nameRef=ref('')
 				const subRef=ref('')
 				const contRef=ref('')
 				const pwdRef=ref('')
 				
-				return {
-					store, 
-					nameRef,
-					subRef,
-					contRef,
-					pwdRef
+     			onMounted(()=>{
+     				store.boardUpdateData(no)
+     			})
+     			return {
+				store,
+				nameRef,
+				subRef,
+				contRef,
+				pwdRef
 				}
 			}
+			
 		})
 		const pinia=createPinia()
-		app.use(createPinia())
-		app.mount('#board_insert')
+		app.use(pinia)
+		app.mount('#board_update')
 	</script>
 </body>
 </html>

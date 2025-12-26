@@ -1,5 +1,6 @@
 package com.sist.web.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -26,12 +27,12 @@ public interface BoardMapper {
 	@SelectKey(keyProperty = "no", resultType = int.class, before = true, 
 			statement = "SELECT NVL(MAX(no) + 1, 1) as no FROM board_2") // db에서 sequence가 없을 떄 사용
 	@Insert("INSERT INTO board_2 VALUES("
-			+ "#{no}, #{name}, #{subject}, #{content}, #{pwd}, SYSDATE, 0")
+			+ "#{no}, #{name}, #{subject}, #{content}, #{pwd}, SYSDATE, 0)")
 	public void boardInsert(BoardVO vo);
 	
 	
 	// 데이터 상세보기
-	@Update("UPDATE board SET "
+	@Update("UPDATE board_2 SET "
 			+ "hit = hit + 1 "
 			+ "WHERE no = #{no}")
 	public void updateHitIncrement(int no);
@@ -40,11 +41,16 @@ public interface BoardMapper {
 			+ "WHERE no = #{no}")
 	public BoardVO boardDetailData(int no);
 	// 데이터 수정
-	
-	
+	@Update("UPDATE board_2 SET "
+			+ "name=#{name}, subject=#{name}, content=#{content} "
+			+ "WHERE no=#{no}")
+	public void boardUpdate(BoardVO vo);
 	
 	// 데이터 삭제
-	
+	@Select("SELECT pwd FROM board_2 WHERE no=#{no}")
+	public String boardGetPassword(int no);
+	@Delete("DELETE FROM board_2 WHERE no=#{no}")
+	public void boardDelete(int no);
 	
 	
 }

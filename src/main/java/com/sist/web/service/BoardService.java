@@ -2,7 +2,9 @@ package com.sist.web.service;
 
 import java.util.*;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.sist.web.vo.BoardVO;
 
@@ -32,4 +34,17 @@ public interface BoardService {
 			+ "WHERE no = #{no}")
 */
 	public BoardVO boardDetailData(int no);		
+
+/*
+	@Update("UPDATE board_2 SET "
+			+ "name=#{name}, subject=#{name}, content=#{content} "
+			+ "WHERE no=#{no}")
+*/
+	public String boardUpdate(BoardVO vo);
+	public BoardVO boardUpdateData(int no);		
+	
+   //@Delete("DELETE FROM board WHERE no=#{no}")
+	
+	public String boardDelete(int no, String pwd);
+	
 }
